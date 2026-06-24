@@ -1,17 +1,36 @@
 :root {
-  --bg-color: #0d0f1a;
+  --bg-color: #05050A; /* Midnight Violet */
+  --bg-secondary: #0B0A1A;
   --text-primary: #ffffff;
   --text-secondary: #a0aec0;
-  --accent-primary: #8b5cf6;
-  --accent-secondary: #0ea5e9;
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --accent-primary: #a78bfa; /* Neon Purple */
+  --accent-secondary: #2dd4bf; /* Neon Cyan */
+  --accent-glow: rgba(167, 139, 250, 0.4);
+  --glass-bg: rgba(11, 10, 26, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(167, 139, 250, 0.2);
+  border-radius: 5px;
+  border: 2px solid var(--bg-color);
+  transition: background 0.3s;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(167, 139, 250, 0.5);
 }
 
 body {
@@ -21,15 +40,35 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Global Tech Grid Overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center;
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Utilities */
 .glass {
   background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
   border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .gradient-text {
@@ -42,11 +81,11 @@ body {
 
 .btn-primary {
   background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
-  color: white;
+  color: #05050A;
   border: none;
   padding: 12px 24px;
   border-radius: 8px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-decoration: none;
@@ -55,7 +94,7 @@ body {
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 4px 20px rgba(45, 212, 191, 0.4);
 }
 
 .btn-secondary {
@@ -73,10 +112,14 @@ body {
 
 .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.05);
+  border-color: var(--accent-primary);
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
+  position: relative;
+  z-index: 2;
 }
+
