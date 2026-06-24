@@ -5,8 +5,9 @@ export default function Header() {
   return (
     <header className="header glass">
       <div className="container header-content">
-        <Link href="/" className="logo">
-          Study<span className="gradient-text">Buddy</span>
+        <Link href="/" className="logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <img src="/logo.png" alt="StudyBuddy" width={32} height={32} style={{ borderRadius: '8px' }} />
+          <span>Study<span className="gradient-text">Buddy</span></span>
         </Link>
         <nav className="nav-links">
           <Link href="/">Home</Link>

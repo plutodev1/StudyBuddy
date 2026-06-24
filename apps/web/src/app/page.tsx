@@ -1,10 +1,31 @@
+"use client";
+
 import Link from 'next/link';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+import FloatingAIElement from '../components/FloatingAIElement';
 import './page.css';
 
 export default function Home() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  });
+
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacityHero = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  
+  const section1Y = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
+  const section2Y = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
+  const section3Y = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
   return (
-    <div className="container page-container">
-      <section className="hero glass">
+    <div className="container page-container" ref={ref} style={{ position: 'relative' }}>
+      <FloatingAIElement />
+      <motion.section 
+        className="hero glass" 
+        style={{ y: heroY, opacity: opacityHero, position: 'relative', zIndex: 1, background: 'rgba(255,255,255,0.02)' }}
+      >
         <div className="hero-content">
           <h1 className="hero-title">Crush your exams, <span className="gradient-text">stress-free</span>.</h1>
           <p className="hero-subtitle">
@@ -15,9 +36,9 @@ export default function Home() {
             <Link href="/login" className="btn-secondary">Get Browser Extension</Link>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="features glass mt-40">
+      <motion.section className="how-it-works mt-40" style={{ y: section1Y, position: 'relative', zIndex: 2 }}>
         <h2>Why StudyBuddy?</h2>
         <div className="feature-grid">
           <div className="feature-card">
@@ -53,9 +74,9 @@ export default function Home() {
             <p>Follow your personalized schedule, review bite-sized notes, and ace that paper!</p>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="testimonials glass mt-40">
+      <motion.section className="testimonials glass mt-40" style={{ y: section2Y, position: 'relative', zIndex: 3 }}>
         <h2>What Students Are Saying</h2>
         <div className="testimonial-grid">
           <div className="testimonial-card">
@@ -71,9 +92,9 @@ export default function Home() {
             <div className="author">- Emmanuel, OAU</div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="pricing mt-40">
+      <motion.section className="pricing mt-40" style={{ y: section3Y, position: 'relative', zIndex: 4 }}>
         <h2>Simple Pricing</h2>
         <div className="pricing-grid">
           <div className="pricing-card glass">
@@ -99,7 +120,7 @@ export default function Home() {
             <Link href="/login" className="btn-primary mt-20" style={{ textAlign: 'center' }}>Go Premium</Link>
           </div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 }
