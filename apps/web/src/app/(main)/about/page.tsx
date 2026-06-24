@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import MorphingScene from '../../components/MorphingScene';
+import MorphingScene from '../../../components/MorphingScene';
 import './about.css';
 
 interface Scenario {
@@ -164,7 +164,7 @@ export default function About() {
       <section ref={value1SectionRef} className="about-section">
         <div className="about-content container align-right">
           <motion.div 
-            className="about-glass-card" 
+            className="about-text-block" 
             style={{ y: val1Y }}
             initial="hidden"
             whileInView="visible"
@@ -184,7 +184,7 @@ export default function About() {
       <section ref={value2SectionRef} className="about-section">
         <div className="about-content container align-left">
           <motion.div 
-            className="about-glass-card" 
+            className="about-text-block" 
             style={{ y: val2Y }}
             initial="hidden"
             whileInView="visible"
@@ -204,7 +204,7 @@ export default function About() {
       <section ref={value3SectionRef} className="about-section">
         <div className="about-content container align-right">
           <motion.div 
-            className="about-glass-card" 
+            className="about-text-block" 
             style={{ y: val3Y }}
             initial="hidden"
             whileInView="visible"
@@ -285,7 +285,7 @@ export default function About() {
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', marginBottom: '40px', maxWidth: '600px', margin: '0 auto 40px' }}>
               Join thousands of students who are studying smarter and saving hours of stress every week.
             </p>
-            <Link href="/login" className="btn-primary btn-large glow-effect">Get Started for Free</Link>
+            <Link href="/auth/signup" className="btn-primary btn-large glow-effect">Get Started for Free</Link>
           </div>
         </div>
       </div>

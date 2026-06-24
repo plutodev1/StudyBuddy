@@ -3,11 +3,11 @@
 import { useRef } from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import MorphingScene from '../components/MorphingScene';
-import InteractiveDemo from '../components/InteractiveDemo';
-import Pricing from '../components/Pricing';
-import Faq from '../components/Faq';
-import Magazine from '../components/Magazine';
+import MorphingScene from '../../components/MorphingScene';
+import InteractiveDemo from '../../components/InteractiveDemo';
+import Pricing from '../../components/Pricing';
+import Faq from '../../components/Faq';
+import Magazine from '../../components/Magazine';
 import './page.css';
 
 const fadeInOnly = {
@@ -105,7 +105,7 @@ export default function Home() {
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                <Link href="/login" className="btn-primary btn-large glow-effect">Get Started Free</Link>
+                <Link href="/auth/signup" className="btn-primary btn-large glow-effect">Get Started Free</Link>
                 <a href="#demo" className="btn-secondary btn-large">See How It Works</a>
               </motion.div>
             </motion.div>
@@ -188,7 +188,7 @@ export default function Home() {
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', marginBottom: '40px', maxWidth: '600px', margin: '0 auto 40px' }}>
               Join thousands of students who are studying smarter and saving hours of stress every week.
             </p>
-            <Link href="/login" className="btn-primary btn-large glow-effect">Get Started for Free</Link>
+            <Link href="/auth/signup" className="btn-primary btn-large glow-effect">Get Started for Free</Link>
           </div>
         </div>
       </div>

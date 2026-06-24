@@ -28,8 +28,8 @@ export default function Header() {
         </nav>
         
         <div className="header-actions desktop-only" style={{ display: 'flex', gap: '16px' }}>
-          <Link href="/login" className="btn-secondary" style={{ padding: '8px 16px', fontSize: '0.9rem' }}>Sign In</Link>
-          <Link href="/login" className="btn-primary" style={{ padding: '8px 16px', fontSize: '0.9rem' }}>Get Started</Link>
+          <Link href="/auth/login" className="btn-secondary" style={{ padding: '8px 16px', fontSize: '0.9rem' }}>Sign In</Link>
+          <Link href="/auth/signup" className="btn-primary" style={{ padding: '8px 16px', fontSize: '0.9rem' }}>Get Started</Link>
         </div>
 
         {/* Mobile Hamburger Button */}
@@ -69,8 +69,8 @@ export default function Header() {
               <Link href="/about" onClick={toggleMenu}>About</Link>
               <Link href="/contact" onClick={toggleMenu}>Contact</Link>
               <div className="mobile-actions">
-                <Link href="/login" className="btn-secondary" onClick={toggleMenu}>Sign In</Link>
-                <Link href="/login" className="btn-primary" onClick={toggleMenu}>Get Started</Link>
+                <Link href="/auth/login" className="btn-secondary" onClick={toggleMenu}>Sign In</Link>
+                <Link href="/auth/signup" className="btn-primary" onClick={toggleMenu}>Get Started</Link>
               </div>
             </nav>
           </motion.div>

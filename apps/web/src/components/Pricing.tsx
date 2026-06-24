@@ -77,7 +77,7 @@ export default function Pricing() {
             </div>
             
             <div className="card-footer">
-              <a href="/login" className="btn-secondary w-full text-center">Start Free</a>
+              <a href="/auth/signup" className="btn-secondary w-full text-center">Start Free</a>
             </div>
           </div>
 
@@ -110,7 +110,7 @@ export default function Pricing() {
             </div>
             
             <div className="card-footer">
-              <a href="/login" className="btn-primary w-full text-center">Secure Your A</a>
+              <a href="/auth/signup" className="btn-primary w-full text-center">Secure Your A</a>
             </div>
           </div>
 
@@ -142,7 +142,7 @@ export default function Pricing() {
             </div>
             
             <div className="card-footer">
-              <a href="/login" className="btn-secondary w-full text-center">Get Squad Access</a>
+              <a href="/auth/signup" className="btn-secondary w-full text-center">Get Squad Access</a>
             </div>
           </div>
 
