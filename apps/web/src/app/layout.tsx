@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
 import "./globals.css";
-
-const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "StudyBuddy | AI Study Partner",
@@ -16,7 +13,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={outfit.className}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+      </head>
+      <body>
         {children}
       </body>
     </html>
