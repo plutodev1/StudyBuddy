@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import './page.css';
 
 export default function Home() {
@@ -10,8 +11,8 @@ export default function Home() {
             Whether it's impromptu tests, endless night classes, or confusing lecture notes, StudyBuddy is your AI copilot. Organize coursework, summarize those massive PDF slides, and keep your CGPA flying high.
           </p>
           <div className="hero-actions">
-            <button className="btn-primary">Launch Web App</button>
-            <button className="btn-secondary">Get Browser Extension</button>
+            <Link href="/login" className="btn-primary">Launch Web App</Link>
+            <Link href="/login" className="btn-secondary">Get Browser Extension</Link>
           </div>
         </div>
       </section>
@@ -83,7 +84,7 @@ export default function Home() {
               <li>Up to 5 PDFs per month</li>
               <li>Standard study schedules</li>
             </ul>
-            <button className="btn-secondary mt-20">Get Started</button>
+            <Link href="/login" className="btn-secondary mt-20" style={{ textAlign: 'center' }}>Get Started</Link>
           </div>
           <div className="pricing-card glass popular">
             <div className="badge">Most Popular</div>
@@ -95,7 +96,7 @@ export default function Home() {
               <li>Advanced past question generation</li>
               <li>Priority support</li>
             </ul>
-            <button className="btn-primary mt-20">Go Premium</button>
+            <Link href="/login" className="btn-primary mt-20" style={{ textAlign: 'center' }}>Go Premium</Link>
           </div>
         </div>
       </section>
