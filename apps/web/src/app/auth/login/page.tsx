@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import '../auth.css';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { createBrowserSupabaseClient } from "@/lib/supabase/client";
+import "../auth.css";
 
 const slides = [
   {
@@ -26,10 +28,13 @@ const slides = [
 ];
 
 export default function SignIn() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [activeSlide, setActiveSlide] = useState(0);
+  const [error, setError] = useState("");
+  const [isBusy, setIsBusy] = useState(false);
 
   useEffect(() => {
     const slideInterval = setInterval(() => {
@@ -38,9 +43,42 @@ export default function SignIn() {
     return () => clearInterval(slideInterval);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    try {
+      const supabase = createBrowserSupabaseClient();
+      supabase.auth.getSession().then(({ data }) => {
+        if (data.session) {
+          router.replace("/dashboard");
+        }
+      });
+    } catch {
+      // Supabase not configured yet.
+    }
+  }, [router]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Auth logic goes here
+    setError("");
+    setIsBusy(true);
+
+    try {
+      const supabase = createBrowserSupabaseClient();
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (signInError) {
+        throw signInError;
+      }
+
+      router.push("/dashboard");
+      router.refresh();
+    } catch (authError) {
+      setError(authError instanceof Error ? authError.message : "Sign in failed.");
+    } finally {
+      setIsBusy(false);
+    }
   };
 
   return (
@@ -59,7 +97,7 @@ export default function SignIn() {
         {/* Left Showcase Column */}
         <div className="auth-showcase-panel">
           <Link href="/" className="showcase-brand">
-            <img src="/logo.png" alt="StudyBuddy Logo" width={28} height={28} style={{ borderRadius: '6px' }} />
+            <img src="/logo.svg" alt="StudyBuddy Logo" width={28} height={28} style={{ borderRadius: '6px' }} />
             <span>Study<span className="gradient-text">Buddy</span></span>
           </Link>
 
@@ -143,6 +181,7 @@ export default function SignIn() {
             </div>
 
             <form className="auth-form" onSubmit={handleSubmit}>
+              {error && <p className="auth-error">{error}</p>}
               {/* Email field */}
               <div className="auth-group">
                 <label className="auth-label">Student Email</label>
@@ -195,8 +234,8 @@ export default function SignIn() {
               </div>
 
               {/* Submit */}
-              <button type="submit" className="btn-primary auth-submit-btn">
-                Sign In ➔
+              <button type="submit" className="btn-primary auth-submit-btn" disabled={isBusy}>
+                {isBusy ? "Signing in..." : "Sign In ➔"}
               </button>
             </form>
 

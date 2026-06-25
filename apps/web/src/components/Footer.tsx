@@ -29,7 +29,7 @@ export default function Footer() {
         {/* Brand details */}
         <div className="footer-brand">
           <Link href="/" className="footer-logo">
-            <img src="/logo.png" alt="StudyBuddy" width={32} height={32} style={{ borderRadius: '8px' }} />
+            <img src="/logo.svg" alt="StudyBuddy" width={32} height={32} style={{ borderRadius: '8px' }} />
             <span>Study<span className="gradient-text">Buddy</span></span>
           </Link>
           <p className="footer-desc">
