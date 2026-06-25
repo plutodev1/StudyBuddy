@@ -87,4 +87,4 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## License
 
-MIT (or update as needed for your hackathon submission).
+MIT
